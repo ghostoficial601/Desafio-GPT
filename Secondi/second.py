@@ -16,5 +16,31 @@ def salvar(caminho, arquivo):
 def carregar_dados(arquivo):
     with open(arquivo, 'r', encoding='UTF-8') as f:
         return json.load(f)
-    
+
+class Livro:
+    def __init__(self, titulo, autor, ano,disponivel):
+        self.titulo = titulo
+        self.autor = autor
+        self.ano = ano 
+        self.disponivel = disponivel
+
+
+
+
+
+def adicionar_livro():
+    arquivo = 'biblioteca.json'
+    livros = carregar_dados(arquivo=arquivo)
+    nome = str(input("Nome do livro:\n-> "))
+    auto = str(input("Auto do livro:\n-> "))
+    ano = int(input("Ano do livro:\n-> "))
+    livro = {
+        "nome": nome,
+        "autor": auto,
+        "ano": ano,
+        "disponivel": True
+    }
+    livros.append(livro)
+    salvar(caminho=arquivo, arquivo=livros)
+    return "Livro adicionado"
 
